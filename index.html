@@ -1,215 +1,364 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Amour d'un Fantôme</title>
-    <style>
-        @media print {
-            body { margin: 0; }
-            .no-print { display: none; }
-            .page-break { page-break-before: always; }
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'Amour d'un Fantôme — récit</title>
+<meta name="description" content="Il m'a fallu longtemps pour comprendre que je ne l'avais pas perdue. On ne perd pas ce qui n'a pas eu lieu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200;9..144,300;9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --glass:#E4E7E8;
+  --glass-2:#D8DCDE;
+  --ink:#15181B;
+  --ink-soft:#3A4147;
+  --mute:#767E84;
+  --hair:#C2C8CB;
+  --steel:#2F4E70;
+  --card:#EDEFF0;
+  --measure:34rem;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --glass:#101316;
+    --glass-2:#0B0D0F;
+    --ink:#DFE3E5;
+    --ink-soft:#B6BDC2;
+    --mute:#7B848A;
+    --hair:#2A3036;
+    --steel:#8FB2D6;
+    --card:#171B1F;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--glass);
+  color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-optical-sizing:auto;
+  font-weight:400;
+  font-size:clamp(1.06rem,0.98rem + 0.42vw,1.24rem);
+  line-height:1.78;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
 
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 210mm;
-            margin: 0 auto;
-            padding: 20mm;
-            background: white;
-        }
+/* barre de progression */
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:0;
+  background:var(--steel);z-index:50;
+  transition:width .08s linear;
+}
 
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-            color: #2c3e50;
-            margin-bottom: 0.5em;
-            border-bottom: 3px solid #e74c3c;
-            padding-bottom: 0.3em;
-        }
+.wrap{
+  max-width:var(--measure);
+  margin:0 auto;
+  padding:0 1.35rem 6rem;
+}
 
-        h2 {
-            color: #34495e;
-            font-size: 1.4em;
-            margin-top: 2em;
-            margin-bottom: 1em;
-            border-left: 4px solid #e74c3c;
-            padding-left: 15px;
-        }
+/* ————— ouverture ————— */
+.opening{padding:clamp(4rem,14vh,9rem) 0 clamp(3rem,8vh,5rem)}
+.kicker{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--mute);margin:0 0 2.4rem;
+}
+.thesis{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:300;
+  font-size:clamp(1.5rem,1.1rem + 2.1vw,2.15rem);
+  line-height:1.28;
+  letter-spacing:-.012em;
+  margin:0 0 1.6rem;
+  text-wrap:balance;
+}
+.thesis em{font-style:italic;color:var(--steel)}
+.opening p.sub{
+  color:var(--ink-soft);
+  margin:0 0 1.1rem;
+  font-size:1.02em;
+}
+h1.title{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:200;
+  font-size:clamp(2.6rem,1.6rem + 5.2vw,4.6rem);
+  line-height:.94;
+  letter-spacing:-.035em;
+  margin:clamp(3rem,9vh,5rem) 0 .6rem;
+  text-wrap:balance;
+}
+.genre{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--mute);margin:0;
+}
+.rule{
+  border:0;height:1px;background:var(--hair);
+  margin:clamp(2.6rem,7vh,4rem) 0;
+}
 
-        h3 {
-            color: #7f8c8d;
-            font-size: 1.1em;
-            font-style: italic;
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-        }
+/* ————— sections ————— */
+section{margin:0 0 clamp(3rem,8vh,4.5rem)}
+.mark{
+  display:flex;align-items:baseline;gap:.9rem;
+  margin:0 0 1.7rem;
+  padding-bottom:.55rem;
+  border-bottom:1px solid var(--hair);
+}
+.num{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:200;
+  font-size:clamp(2.1rem,1.4rem + 2.6vw,2.9rem);
+  line-height:1;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.date{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mute);
+}
+p{margin:0 0 1.35rem}
+p.lead::first-letter{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:300;
+  float:left;
+  font-size:3.15em;
+  line-height:.86;
+  padding:.06em .1em 0 0;
+  color:var(--steel);
+}
+em{font-style:italic}
+strong{
+  font-weight:400;font-style:normal;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.86em;letter-spacing:.05em;
+  color:var(--steel);
+}
 
-        p {
-            text-align: justify;
-            margin-bottom: 1em;
-            text-indent: 1.5em;
-        }
+/* ————— le message : signature ————— */
+.sms{
+  margin:2.2rem 0;
+  padding:1.15rem 1.25rem 1.3rem;
+  background:var(--card);
+  border-left:2px solid var(--steel);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.86rem;
+  line-height:1.72;
+  color:var(--ink-soft);
+}
+.sms .from{
+  display:block;
+  font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:.7rem;
+}
 
-        .prologue {
-            font-style: italic;
-            background: #f8f9fa;
-            padding: 20px;
-            border-left: 5px solid #e74c3c;
-            margin: 2em 0;
-        }
+/* réplique isolée */
+.beat{
+  margin:2.2rem 0;
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:300;
+  font-size:clamp(1.22rem,1rem + 1vw,1.5rem);
+  line-height:1.4;
+  letter-spacing:-.01em;
+  text-wrap:balance;
+}
 
-        .prologue p {
-            text-indent: 0;
-        }
+/* fin */
+.coda{border-top:1px solid var(--hair);padding-top:clamp(2.4rem,7vh,3.5rem)}
+.end{
+  margin:clamp(3rem,9vh,4.5rem) 0 0;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--mute);text-align:center;
+}
+.end::before,.end::after{content:"—";margin:0 .8rem;opacity:.5}
 
-        .epilogue {
-            background: #f1f2f6;
-            padding: 20px;
-            border: 2px solid #2c3e50;
-            margin: 2em 0;
-            border-radius: 5px;
-        }
+/* apparition */
+.fade{opacity:0;transform:translateY(10px);animation:up .9s cubic-bezier(.2,.7,.3,1) forwards}
+.fade:nth-child(2){animation-delay:.1s}
+.fade:nth-child(3){animation-delay:.2s}
+.fade:nth-child(4){animation-delay:.3s}
+@keyframes up{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .fade{animation:none;opacity:1;transform:none}
+  #progress{transition:none}
+}
 
-        .date {
-            font-weight: bold;
-            color: #e74c3c;
-            font-style: italic;
-            margin-bottom: 0.5em;
-        }
-
-        .chapter-number {
-            color: #e74c3c;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-
-
-        .footer {
-            text-align: center;
-            margin-top: 3em;
-            padding-top: 2em;
-            border-top: 1px solid #bdc3c7;
-            color: #7f8c8d;
-            font-style: italic;
-        }
-    </style>
+@media (max-width:480px){
+  body{line-height:1.72}
+  .wrap{padding:0 1.15rem 4.5rem}
+  .mark{flex-direction:column;align-items:flex-start;gap:.25rem}
+  p.lead::first-letter{font-size:2.8em}
+}
+::selection{background:var(--steel);color:var(--glass)}
+:focus-visible{outline:2px solid var(--steel);outline-offset:3px}
+</style>
 </head>
 <body>
+<div id="progress" aria-hidden="true"></div>
 
-    <h1>L'Amour d'un Fantôme</h1>
-    <p style="text-align: center; font-style: italic; color: #7f8c8d; text-indent: 0; margin-bottom: 3em;">Un récit de désillusion et de renaissance</p>
+<main class="wrap">
 
-    <div class="prologue">
-        <h2>Prologue</h2>
-        <p>Il y a des amours qui nous transforment, et d'autres qui nous révèlent. Celle-ci a fait les deux. Elle m'a d'abord élevé vers des sommets que je n'avais jamais osé espérer, puis m'a précipité dans un abîme où j'ai découvert qui j'étais vraiment. Mais surtout, elle m'a appris cette vérité cruelle : on peut aimer quelqu'un qui n'existe pas, porter en soi le fantôme d'une personne qui n'a jamais été réelle.</p>
-        <p>Voici l'histoire de cet amour impossible. L'histoire de Y, ou plutôt, l'histoire de celle que j'ai cru être Y.</p>
-    </div>
+  <header class="opening">
+    <p class="kicker fade">Quatre cent dix jours</p>
+    <p class="thesis fade">Il m'a fallu longtemps pour comprendre que je ne l'avais pas perdue. On ne perd pas ce qui n'a pas eu lieu.</p>
+    <p class="sub fade">Ce que j'ai perdu, c'est quelqu'un que j'avais fabriqué et qui portait son visage.</p>
+    <p class="sub fade">Je l'appellerai Lina. C'est un mensonge de plus, mais celui-là est de moi.</p>
+    <h1 class="title">L'Amour d'un&nbsp;Fantôme</h1>
+    <p class="genre">récit</p>
+  </header>
 
-    <h2><span class="chapter-number">I.</span> L'Illusion parfaite</h2>
-    <p class="date">Vendredi 22 mai</p>
-    <p>Ce jour-là reste gravé dans ma mémoire comme le dernier instant de bonheur pur. J'étais venu chercher Y à la bibliothèque, comme tant de fois auparavant. Elle est montée dans ma voiture avec ce sourire qui illuminait mes journées, et nous nous sommes embrassés avec cette tendresse qui me faisait croire que l'éternité existait.</p>
-    <p>Dans l'habitacle de cette voiture, le temps s'était suspendu. Nous parlions de tout et de rien, nos mains entrelacées, nos regards perdus l'un dans l'autre. Je lui ai dit que je l'aimais, et ces mots sortaient de mon cœur comme une prière. Elle me répondait avec la même intensité, la même sincérité apparente.</p>
-    <p>Ces heures passées ensemble avaient le goût de l'absolu. J'étais convaincu d'avoir trouvé ma moitié, cette personne rare qui comprenait mes silences et comblait mes manques. Elle était douce, attentionnée, présente. Elle m'offrait cet amour dont j'avais toujours rêvé sans oser l'espérer.</p>
-    <p>Mais trois jours plus tard, ce château de cartes s'effondrerait sous le poids de la vérité.</p>
+  <hr class="rule">
 
-    <div class="page-break"></div>
+  <section>
+    <div class="mark"><span class="num">I</span><span class="date">Vendredi 22 mai</span></div>
+    <p class="lead">Je l'attendais devant la bibliothèque, moteur coupé, depuis vingt minutes. Elle est sortie avec son sac contre la poitrine, elle a couru les derniers mètres bien qu'il ne pleuvait pas, et elle a claqué la portière trop fort, comme toujours. Elle a mis le chauffage à fond avant de dire bonjour. Elle avait froid en permanence, même en mai ; elle tirait ses manches sur ses mains et mordait le tissu au niveau du poignet quand elle réfléchissait. Ses pulls avaient tous un trou au même endroit.</p>
+    <p>Nous sommes restés là, sur le parking, sans aller nulle part. Elle m'a raconté qu'une fille de son groupe avait fait une remarque sur elle, et elle est revenue trois fois sur la même phrase pour savoir si c'était méchant ou pas. Elle était comme ça. Elle pouvait mentir sans ciller sur les choses graves et se ronger deux heures sur une phrase de rien.</p>
+    <p>Puis elle a parlé de sa mère, de son départ prévu à la fin de l'été, du fait qu'elle ne savait pas ce qu'elle voulait faire de sa vie et que tout le monde autour d'elle avait l'air de le savoir. Elle a dit : « toi au moins t'as un plan. » Elle disait ça avec une espèce d'envie qui, sur le moment, m'a flatté.</p>
+    <p>Il faut que je raconte le reste de cette heure-là, parce que sinon la suite est fausse.</p>
+    <p>Les vitres se sont couvertes de buée. Il y a eu ce moment où elle a détaché sa ceinture sans rien dire — le petit claquement du boîtier, elle l'a fait deux fois parce que ça a coincé la première. Elle a enjambé le frein à main. Le levier de vitesse lui rentrait dans la cuisse et ça l'a fait rire. Je me souviens de sa main froide sous mon pull, du fait qu'elle avait toujours les mains froides, de son souffle qui sentait la cigarette qu'elle avait jurée arrêtée le mardi. Je me souviens du bruit du tissu, de la boucle de ceinture contre le plastique de la portière, du volant qui me rentrait dans le dos. Je me souviens qu'à un moment j'ai regardé par-dessus son épaule et qu'il y avait un homme qui promenait un chien sur le trottoir d'en face, et que je me suis dit : il ne peut rien voir, c'est embué.</p>
+    <p>Je note tout ça froidement, quatre-vingts jours plus tard, avec une précision qui me dégoûte. Parce que pendant que sa bouche était sur moi, elle avait déjà quinze jours de messages avec lui dans son téléphone, posé à trente centimètres, écran contre le tapis de sol. Ce n'est pas une image. C'est un fait daté, vérifiable, que j'ai vérifié.</p>
+    <p>Après, elle est repassée du côté passager, elle a remonté son jean en se soulevant sur les talons, elle a rattaché sa ceinture, et elle a repris la conversation exactement là où on l'avait laissée. Sa mère. La fin de l'été. Ce qu'elle allait faire de sa vie. Sans transition. J'ai trouvé ça naturel.</p>
+    <p>Je lui ai dit que je l'aimais. Elle a répondu la même chose, sans détourner les yeux.</p>
+    <p class="beat">C'est la dernière fois que je l'ai vue sans rien savoir.</p>
+  </section>
 
-    <h2><span class="chapter-number">II.</span> La Faille</h2>
-    <p class="date">Lundi 25 mai</p>
-    <p>L'appel de O résonne encore dans ma tête comme un glas. Depuis plusieurs jours, il insistait pour que je vienne à la bibliothèque. J'y voyais un signe encourageant, pensant naïvement que Yasmine avait demandé à ses amis de m'y faire venir. Je croyais encore en nous, malgré cette froideur nouvelle qui s'était installée entre nous.</p>
-    <p>Car oui, les choses avaient changé. Nos conversations s'étaient réduites à des politesses creuses : "Bonjour", "bonne nuit", "ça va". J'étais distant, certes, mais pas par manque d'amour. J'étais épuisé de toujours faire le premier pas, fatigué d'aimer seul.</p>
-    <p>Quand O a lâché les mots qui allaient tout détruire, j'ai senti mon monde basculer. Yasmine se rapprochait d'un autre garçon. Ils mangeaient ensemble, étudiaient ensemble, s'échangeaient des messages.</p>
-    <p>La douleur qui m'a traversé n'était pas humaine. C'était quelque chose de primitif, d'animal. Mon cœur ne s'est pas brisé en silence - il a hurlé, il a explosé dans ma poitrine comme une grenade. Pour la première fois de ma vie, j'ai compris ce que signifiait avoir le cœur brisé au sens littéral.</p>
-    <p>J'ai réagi comme un homme blessé à mort. J'ai crié, insulté. Ce n'est pas ma fierté, c'est ma honte. Mais cette colère n'était que l'écume de ma détresse.</p>
+  <section>
+    <div class="mark"><span class="num">II</span><span class="date">Lundi 25 mai</span></div>
+    <p class="lead">Karim m'appelait depuis plusieurs jours pour que je passe à la bibliothèque. Je croyais que c'était bon signe. Je m'étais convaincu que Lina lui avait demandé de me faire venir, parce que je préférais cette explication à toutes les autres.</p>
+    <p>Il a fini par me dire pourquoi. Elle mangeait avec un garçon. Elle étudiait avec lui. Ils s'écrivaient.</p>
+    <p>Je n'ai pas raccroché tout de suite. J'ai dit trois fois « d'accord », d'une voix normale, et j'ai continué à conduire deux ou trois cents mètres avant de me garer n'importe où, en travers, une roue sur le trottoir.</p>
+    <p>Ensuite, j'ai écrit.</p>
+    <p>Je l'ai traitée de pute. Je l'écris en toutes lettres parce que j'ai passé trois mois à écrire « un mot » à la place, et que ce n'est pas honnête. Le mot était : pute. Je l'ai tapé, je l'ai relu, et j'ai appuyé sur envoyer. Il n'y a pas eu de brouillard, pas de moment où je me serais absenté de moi-même. On raconte souvent qu'on ne se reconnaît plus dans ces moments-là. C'est faux. Je me suis très bien reconnu. J'ai su exactement ce que je faisais, j'ai su que ça allait la salir, j'ai su que ce mot-là ne sert qu'à ça et qu'il n'a jamais eu d'autre usage, et je l'ai fait quand même, parce que j'avais mal et que je voulais qu'elle ait mal aussi.</p>
+    <p class="beat">C'est le geste le plus lâche de ma vie et il m'a pris quatre secondes.</p>
+    <p>Sa réponse est arrivée pendant que je roulais vers elle.</p>
+    <div class="sms"><span class="from">Lina — 17:42</span>Tu me traites de pute ???? Mais ça va ou quoi ? Tu écoutes Karim ???? C'est les potes à Nadia. Et on prend juste nos pauses ensemble, vu que toi tu me calcules même plus… Mais bon maintenant t'as vraiment atteint les limites. Ciao.</div>
+    <p>Devant la bibliothèque, c'est Nadia qui s'est avancée la première. Elle m'a dit qu'un homme, un vrai, n'insulte pas une femme.</p>
+    <p>Elle avait raison. C'est la seule phrase de toute cette histoire dont je n'ai jamais pu discuter une virgule.</p>
+  </section>
 
-    <h2><span class="chapter-number">III.</span> Le Mensonge dévoilé</h2>
-    <p>En route vers elle, j'ai reçu son message. Un pavé accusateur qui suintait la mauvaise foi :</p>
-    <p style="font-style: italic; background: #f8f9fa; padding: 15px; border-left: 3px solid #e74c3c;">"Tu me traites de pute ???? Mais ça va ou quoi ? Tu écoutes O ???? C'est les potes à Eya, un est en couple, l'autre c'est le crush de Eya, et comme elle veut passer du temps avec lui, bah je suis avec elle comme ça ça fait pas bizarre. Et on prend juste nos pauses ensemble, vu que toi tu me calcules même plus… Mais bon maintenant t'as vraiment atteint les limites. Ciao."</p>
-    <p>Arrivé sur place, elle était avec Eya, qui s'est dressée devant moi comme une muraille : "Un homme, un vrai, n'insulte pas une femme." Elle avait raison, et cette vérité m'a brûlé plus encore que mes blessures.</p>
-    <p>Quand j'ai enfin pu parler à Y, elle a nié avec une conviction déconcertante. O mentait, disait-elle. Ce garçon n'était qu'un faire-valoir pour les flirts d'Eya. Elle n'avait rien à se reprocher.</p>
-    <p>J'ai voulu la croire. Désespérément. Parce que l'alternative était impensable.</p>
-    <p>Mais les signes étaient là : la lettre de mon prénom disparue de sa bio, ses mensonges à peine dissimulés, cette distance qu'elle creusait jour après jour. J'aimais un fantôme qui s'évanouissait déjà.</p>
-    <p>J'ai tenté de m'excuser, de réparer l'irréparable. J'ai pleuré, supplié, espéré. Je suis resté garé pas loin de chez elle pendant des heures, les yeux rouges et le cœur en lambeaux. Rien. Aucun signe. Aucune pitié.</p>
-    <p>Cette nuit-là, j'ai découvert l'insomnie du désespoir. À deux jours de mes examens, je n'arrivais plus à lire une équation. Le monde avait perdu sa logique.</p>
+  <section>
+    <div class="mark"><span class="num">III</span></div>
+    <p class="lead">Lina a tout nié, calmement, en me regardant. Karim inventait. Le garçon ne comptait pas. Elle m'a demandé si j'allais vraiment croire quelqu'un d'autre plutôt qu'elle.</p>
+    <p>Et puis, sans que je voie le virage arriver, nous parlions d'autre chose. De ma jalousie. De ce que j'avais écrit. Du fait que je ne lui parlais presque plus depuis deux semaines et qu'elle avait quand même continué à venir. J'étais monté dans cette voiture avec une question et j'en suis ressorti en m'excusant.</p>
+    <p>Ce n'était pas la première fois. C'était même une mécanique que je connaissais par cœur sans l'avoir jamais nommée : j'arrivais avec un grief, elle en produisait un plus gros, et nous finissions par traiter le sien. Je mettais ça sur le compte de son caractère. Elle était vive, elle avait de la répartie, elle gagnait les discussions. J'en étais presque fier.</p>
+    <p>Je l'ai crue, donc. Je veux être précis là-dessus, parce que c'est le seul endroit du récit où je pourrais encore me défendre et je préfère ne pas le faire : je ne l'ai pas crue parce qu'elle était convaincante. Je l'ai crue parce que l'autre possibilité me coûtait trop cher.</p>
+    <p>Le soir, j'ai vérifié sa bio. L'initiale de mon prénom n'y était plus. Elle avait dû disparaître plusieurs jours avant ; je ne saurais pas dire quand, et c'est bien ça le problème : j'allais vérifier assez souvent pour le remarquer, pas assez pour savoir.</p>
+    <p>Je me suis garé dans sa rue vers vingt-trois heures.</p>
+    <p>Je vais raconter cette nuit-là comme elle s'est passée, sans l'arranger.</p>
+    <p>Je n'avais rien à y faire. Je regardais deux fenêtres allumées au troisième étage en attendant qu'il se passe quelque chose que j'aurais été incapable de nommer. À un moment, une silhouette est passée derrière le rideau et j'ai eu une décharge dans les mains, comme quand on rate une marche. J'ai attendu qu'elle repasse. Elle n'est pas repassée. J'ai ouvert et refermé notre conversation vingt fois pour voir si le « vu » changeait quelque chose. J'ai relu mes propres messages. J'ai relu le mot que j'avais écrit, plusieurs fois, comme on appuie sur un bleu.</p>
+    <p>Vers une heure, j'ai eu besoin de pisser et je ne suis pas sorti de la voiture, parce que si je sortais elle pouvait me voir depuis la fenêtre, et parce qu'une partie de moi voulait précisément qu'elle me voie. Je suis resté. Ça, personne ne me l'a jamais fait raconter.</p>
+    <p>Mon téléphone s'est éteint tout seul vers deux heures. Je suis resté encore un moment dans le noir, dans une voiture qui sentait le froid et la vieille cigarette, à côté d'un frein à main où trois jours plus tôt il y avait sa cuisse.</p>
+    <p class="beat">Si un ami m'avait raconté cette nuit-là, je lui aurais dit de rentrer chez lui.</p>
+  </section>
 
-    <div class="page-break"></div>
+  <section>
+    <div class="mark"><span class="num">IV</span><span class="date">Mercredi 27 mai</span></div>
+    <p class="lead">J'avais un examen à huit heures trente. Je me suis réveillé à six heures avec les yeux mouillés, sans me souvenir d'avoir pleuré. Le corps continue son travail pendant qu'on dort.</p>
+    <p>J'ai ouvert mes notes. Il y avait une équation en haut de la page, quatre lignes, quelque chose que j'avais résolu vingt fois. Je l'ai lue, je suis arrivé au bout, et je n'avais rien compris. Je l'ai relue. Les signes tenaient debout séparément et ne voulaient plus rien dire ensemble.</p>
+    <p>Je suis resté assis sur le lit jusqu'à neuf heures. Puis je me suis recouché.</p>
+    <p class="beat">C'est la première chose qu'elle m'a prise que je pouvais compter.</p>
+    <p>Il y a une autre chose que je peux compter et dont je n'ai jamais parlé à personne : entre le 25 mai et le 15 juin, j'ai perdu six kilos. Pas par chagrin romantique, pas de la manière dont on l'écrit dans les livres. Je n'y arrivais pas mécaniquement. Je mettais quelque chose dans ma bouche, je mâchais, et au moment d'avaler la gorge refusait. J'ai vomi trois fois dans le lavabo de ma salle de bain, à l'eau, sans avoir rien mangé, en me tenant au rebord avec les deux mains. Ma mère a mis onze jours à me demander si j'étais malade et je lui ai dit que c'était les examens.</p>
+    <p>Voilà où j'en étais pendant que, à quatre kilomètres, elle prenait ses pauses de midi.</p>
+  </section>
 
-    <h2><span class="chapter-number">IV.</span> La Vérité nue</h2>
-    <p>Le lendemain, j'ai rencontré Mehdi. Je cherchais encore la vérité, ou peut-être une dernière illusion pour me rassurer. Ce que j'ai appris a achevé de détruire ce qu'il restait de mes certitudes.</p>
-    <p>Yasmine m'avait menti. Sur tout.</p>
-    <p>Depuis plusieurs jours, elle parlait déjà à ce garçon. Elle attendait simplement "le bon moment" pour me quitter. Non pas par respect, mais par calcul. Son cœur s'était déjà tourné vers un autre qu'elle trouvait "beau" et qu'elle voulait séduire avant son départ en Tunisie.</p>
-    <p>Pendant qu'elle me regardait dans les yeux en me disant "je t'aime", elle pensait à lui. Pendant qu'elle m'embrassait dans ma voiture, elle planifiait déjà sa sortie. Chaque "je t'aime" n'était qu'un mensonge de plus dans sa collection.</p>
-    <p>Confrontée à l'évidence, elle a fini par avouer. Elle ne m'aimait plus, prétendait-elle. Non pas à cause de moi, mais à cause de ses "nouvelles convictions religieuses". Elle me parla d'une prière de consultation et d'un rêve chaotique où je l'insultais - un signe divin, selon elle, qu'il fallait rompre.</p>
-    <p>J'ai tenté de lui expliquer que ce genre de rêve ne pouvait pas être une guidance divine, mais rien n'y faisait. La religion était devenue son alibi, sa façon élégante de justifier l'injustifiable.</p>
-    <p>La veille de mon examen, je l'ai appelée une dernière fois. J'ai pleuré, supplié, tendu vers elle les derniers lambeaux de ma dignité. Elle m'a répondu avec la froideur d'un iceberg, puis m'a raccroché au nez.</p>
-    <p>Le lendemain, je me suis réveillé avec les yeux mouillés, comme si j'avais pleuré en dormant. Mon corps continuait de souffrir alors que mon esprit avait déjà capitulé. Je n'avais plus la force de me lever, de manger, d'affronter cet examen qui m'attendait.</p>
-    <p>Ce jour-là, j'ai abandonné. Parce que j'étais vidé. Parce que rien n'avait plus de sens.</p>
+  <section>
+    <div class="mark"><span class="num">V</span><span class="date">Samedi 30 mai</span></div>
+    <p class="lead">Il faut que j'explique la géographie, sinon rien de ce qui suit ne se comprend.</p>
+    <p>Le troisième étage de la bibliothèque appartenait à un groupe d'une dizaine de personnes. Ils arrivaient à huit heures, mettaient une veste sur les chaises pour tenir les places de ceux qui dormaient encore, descendaient manger ensemble à midi et remontaient ensemble. Tout le monde savait tout sur tout le monde, en décalage d'environ deux heures. J'en étais depuis un an sans en être : le copain de Lina, toléré, invité aux anniversaires, jamais consulté.</p>
+    <p>Nadia était le centre de ce groupe. C'était l'amie d'enfance de Lina et elle la défendait comme on défend un but, en sortant loin de la cage. Ce que je n'avais pas compris à l'époque, et que j'ai mis des semaines à voir, c'est qu'elle n'était pas seulement loyale : elle était impliquée. La version officielle — Lina passait ses pauses avec Adam pour que Nadia puisse voir le sien sans que ça se remarque — était une couverture qui protégeait les deux. Si Lina tombait, Nadia tombait avec.</p>
+    <p>Karim, lui, n'était pas mon ami. Je m'en suis rendu compte trop tard. Il m'a prévenu, oui, et il a insisté pendant trois jours pour que je vienne voir de mes yeux — mais il ne m'a jamais dit pourquoi ça lui tenait tant à cœur. Encore aujourd'hui je ne sais pas si je dois le remercier ou lui en vouloir. Les deux versions se défendent.</p>
+    <p>Mon frère, lui, ne connaissait personne. C'est important pour la suite.</p>
+    <p>Nous sommes montés vers quatorze heures. Dans la voiture, je lui avais tout raconté, y compris le message, y compris le mot. Il a écouté jusqu'au bout. Il n'a pas dit que ça passerait, il n'a pas dit qu'elle ne me méritait pas. Il a juste demandé si j'avais mangé.</p>
+    <p>Les portes de l'ascenseur s'ouvrent directement sur le palier des casiers. Ils étaient assis par terre contre les casiers, tous les deux, en train de rire de quelque chose que je n'ai pas entendu. Il y avait peut-être quinze centimètres entre eux. Elle avait les manches tirées sur les mains.</p>
+    <p>Je ne sais plus si Nadia était déjà debout à ce moment-là ou si elle s'est levée en me voyant. Ces deux versions ne racontent pas du tout la même histoire — dans l'une elle attendait, dans l'autre elle a improvisé — et je suis incapable de trancher. J'ai revu cette scène des centaines de fois et elle a changé à chaque fois.</p>
+    <p>J'ai fait ce qu'on fait dans ces cas-là quand douze personnes regardent : j'ai tourné à droite, j'ai marché vers la table de Karim, et j'ai souri. J'ai dit quelque chose comme « ça va ? ». Il a répondu « ça va ». Il ne s'est pas levé.</p>
+    <p>Nadia a traversé la salle. Elle a commencé à parler à voix haute, de loin, ce qui est une manière de choisir son public avant de choisir ses mots. Les premières phrases étaient encore présentables : que j'étais malade, que je harcelais son amie, que tout le monde savait comment je m'étais comporté. Autour, les gens avaient arrêté de faire semblant de travailler. J'ai vu un type retourner son téléphone sur la table, écran vers le haut.</p>
+    <p>Je crois que j'aurais pu partir à ce moment-là. C'était encore possible.</p>
+    <p>Puis mon frère est entré dans la salle derrière moi et il est passé devant elle sans la saluer.</p>
+    <p>Il ne l'avait jamais vue de sa vie. Pour lui, c'était une inconnue qui criait sur son frère. Mais dans ce groupe-là, ne pas saluer est un acte : ça veut dire <em>tu n'existes pas</em>, et ça se fait devant témoins. Toute la salle l'a lu comme ça. Elle aussi.</p>
+    <p>C'est là que ça a basculé. Elle est passée au dialecte. Elle a mélangé Dieu et les insultes dans la même phrase — littéralement dans la même phrase, le nom de Dieu et une injure obscène séparés par trois mots, répétés en boucle comme une ponctuation. Il y avait de la salive sur son menton. Elle était à cinquante centimètres de mon visage et je sentais son haleine.</p>
+    <p>Et c'est à cet instant précis que j'ai remarqué que son string dépassait de son pantalon.</p>
+    <p>Je le note parce que c'est vrai et parce que ça dit exactement où j'en étais. Une fille me faisait la leçon sur ce qu'un musulman doit être, et pendant qu'elle parlait, mon cerveau, au lieu d'écouter, cherchait déjà de quoi la disqualifier. Il a trouvé ça — un bout de tissu, dix centimètres de dentelle au-dessus d'une ceinture. Ça m'a fait un bien immédiat, une petite décharge de supériorité tiède : <em>tu me parles de religion, toi, habillée comme ça</em>. J'ai failli le lui dire, devant tout le monde, en le désignant. Je ne sais pas ce qui m'a retenu, et je ne suis pas sûr que ce soit la dignité. Je crois surtout que j'ai calculé que ça me coûterait la salle.</p>
+    <p>Ce que j'ai dit à la place n'était pas beaucoup mieux. Je lui ai dit d'arrêter de se servir de la religion. J'ai dit d'autres choses. Je ne vais pas prétendre que je me défendais : je répondais, et je répondais fort, et j'y ai pris quelque chose qui ressemblait à du soulagement, parce que crier sur Nadia était infiniment plus facile que de regarder les casiers.</p>
+    <p>Quand c'est retombé, elle a invoqué le nom de Dieu, comme on ferme une porte, et elle a tiré une bouffée sur sa puff. La vapeur sentait la fraise. Sur le moment, j'ai trouvé ça grotesque et j'ai savouré. Aujourd'hui je me dis surtout qu'on était deux, sur ce trottoir, à se servir de Dieu comme d'un argument.</p>
+    <p>La bibliothécaire est arrivée au bout de trois minutes. Elle nous a fait sortir tous les quatre — Nadia, mon frère, Karim qui suivait, et moi.</p>
+    <p>Sur le trottoir, ça a continué encore un quart d'heure. À un moment je me suis vu de l'extérieur : cinq personnes qui criaient devant une bibliothèque un samedi après-midi, et parmi elles il y avait moi, la voix cassée, le tee-shirt mouillé sous les bras, en train de prouver quelque chose à une fille qui ne m'avait rien fait.</p>
+    <p>Karim est resté sur le côté pendant tout le temps que ça a duré. Il n'a pas dit un mot. Lui qui m'avait fait venir, qui savait, qui aurait pu dire une phrase — une seule aurait suffi — n'a rien dit du tout. C'est ce silence-là que je repasse le plus souvent, plus que les cris.</p>
+    <p class="beat">Et Lina n'est pas descendue.</p>
+    <p>Voilà. C'est la seule chose qui compte dans toute cette scène et il m'a fallu des mois pour la voir. Il y a eu quinze minutes de vacarme sur un trottoir à propos d'elle, et elle est restée au troisième étage. Je m'étais battu contre son amie, devant son groupe, sous ses fenêtres, et elle n'a même pas jugé utile de prendre l'ascenseur.</p>
+    <p>Dans la voiture, mon frère a mis sa ceinture et il a dit : « Elle est même pas descendue. »</p>
+    <p>Je lui ai répondu que je savais. Ce n'était pas vrai. Je l'ai su à cet instant précis, parce qu'il l'avait dit à voix haute.</p>
+  </section>
 
-    <h2><span class="chapter-number">V.</span> Le Face-à-face avec la réalité</h2>
-    <p class="date">30 mai</p>
-    <p>Je suis allé à la bibliothèque avec mon frère. Pour la première fois, je lui ai tout raconté. Moi qui gardais toujours mes blessures pour moi, j'avais besoin qu'il sache, qu'il comprenne, qu'il témoigne de ma douleur.</p>
-    <p>Il a écouté sans jugement, sans me dire de "passer à autre chose". Juste avec cette présence fraternelle qui console sans rien réparer.</p>
-    <p>Mais le sort n'en avait pas fini avec moi.</p>
-    <p>En sortant de l'ascenseur pour saluer O une dernière fois, je les ai vus : Y et Mehdi, assis par terre, complices, souriants. Le choc m'a figé. Je fais comme si de rien n'était, j'ai accouru vers O sachant pertinemment que Eya était sûrement en train de manigancer quelque chose.</p>
-    <p>J'ai tenté de garder ma dignité, mais Eya a commencé à me provoquer. Les mots ont fusé, la tension est montée. Mon frère, témoin de cette dégradation, est entré sans la saluer. Cela a déclenché chez elle une rage incontrôlable. Chacune de ces phrases finissait par "bara nyek".</p>
-    <p>Elle m'a parlé d'Islam, m'a insulté dans une langue que je ne comprenais qu'à demi. Je lui ai répondu de ne plus utiliser la religion comme prétexte, puis j'ai remarqué que son string dépassait de son pantalon. L'ironie était amère : elle me parlait de morale en étant elle-même dans une situation gênante. Une fois les tensions retombées elle a invoqué le nom de Dieu et terminé son invocation par une taff de puff.</p>
-    <p>Cette scène pathétique a scellé définitivement la fin de tout ce que j'avais cru construire.</p>
+  <section>
+    <div class="mark"><span class="num">VI</span><span class="date">Mardi 2 juin</span></div>
+    <p class="lead">Il y a eu, entre-temps, la scène des excuses. Je la mets ici parce que c'est là qu'elle appartient, même si elle a eu lieu avant.</p>
+    <p>Nadia l'a forcée. Ce détail suffirait à lui seul. Il a fallu que son amie d'enfance lui dise de s'excuser pour qu'elle s'excuse, et elle a mis onze secondes à le faire — je les ai comptées, parce qu'il n'y avait rien d'autre à faire de ces onze secondes. Elle regardait le sol à ma gauche. Quand la phrase est sortie, elle est sortie d'une seule traite, sur un ton plat, celui qu'on prend pour lire un numéro de série. Puis elle a levé les yeux pour vérifier que Nadia avait entendu, et pas moi.</p>
+    <p class="beat">Un an et demi, et une phrase récitée dans le vide pour solde de tout compte.</p>
+    <p>Le 2 juin, je les ai revus sur le campus, puis dans une boutique en bas de l'avenue. Ils choisissaient quelque chose ensemble ; elle tenait un truc à bout de bras et lui faisait une grimace.</p>
+    <p>Elle a ri. C'est ce rire qui m'a fait le plus de mal, et j'ai mis longtemps à comprendre pourquoi : ce n'était pas un rire nouveau. C'était exactement le même qu'avec moi. La même tête penchée, la même main devant la bouche, le même petit mouvement d'épaule à la fin. Rien n'avait été fabriqué pour moi, rien n'avait été gardé. Je n'avais pas été remplacé — j'avais été repris.</p>
+    <p>Quatre cent dix jours. Je les avais comptés, ce qui aurait déjà dû m'alerter : on ne compte que ce dont on n'est pas sûr.</p>
+    <p>J'ai attendu qu'ils sortent, de l'autre côté de la rue, derrière un abribus, en me tenant de manière à ce que le panneau me cache — et je veux qu'on mesure ce que ça veut dire : un type de vingt-deux ans caché derrière un abribus à quinze mètres d'une boutique pour voir combien de temps une fille met à choisir un objet avec quelqu'un d'autre.</p>
+    <p>Puis je suis rentré.</p>
+  </section>
 
-    <div class="page-break"></div>
+  <section>
+    <div class="mark"><span class="num">VII</span></div>
+    <p class="lead">C'est en juin qu'a commencé le travail le plus long, celui que personne ne voit : reprendre quatre cent dix jours un par un et les relire avec ce que je savais maintenant. Ce n'est pas agréable. On n'y découvre pas seulement ce que l'autre a fait. On y découvre le nombre de fois où on a été prévenu.</p>
+    <p>En un an et demi, je l'avais vue se brouiller avec quatre ou cinq personnes, définitivement, avec des phrases définitives — puis les retrouver quelques semaines plus tard comme si rien n'avait eu lieu, sans que personne n'ose demander ce qui s'était passé. J'avais trouvé ça vivant. J'avais même trouvé ça libre.</p>
+    <p>J'avais vu des promesses faites la nuit et périmées à midi. Elle allait arrêter de fumer ; elle l'a arrêté à peu près une fois par semaine pendant un an, chaque fois avec une conviction entière, et chaque fois je la félicitais. Elle allait parler de moi à sa mère. Elle allait venir le samedi. Prises une par une, ces choses ne pèsent rien. Personne ne quitte quelqu'un parce qu'un samedi est tombé à l'eau.</p>
+    <p>Il y avait les soirées dont la version changeait selon la personne à qui elle les racontait. J'ai assisté deux ou trois fois à la scène complète : j'entendais le récit fait à quelqu'un d'autre, à deux mètres de moi, et ce n'était pas celui que j'avais eu. Pas des mensonges énormes — des déplacements. Une heure d'arrivée, un nom en moins, une personne devenue « des gens ». Je me disais qu'elle simplifiait.</p>
+    <p>Une fois, elle m'a raconté en riant qu'elle avait passé une soirée enfermée dans une chambre avec trois garçons à manger des space cakes. Elle le racontait comme une anecdote, avec la chute et tout. J'ai ri aussi. Je me souviens même d'avoir ri un peu trop fort, et légèrement en retard sur elle. Puis j'ai rangé ça dans la catégorie où je rangeais le reste : les choses drôles, les choses de son âge, les choses qui ne voulaient rien dire. Cette catégorie a fini par contenir énormément de choses.</p>
+    <p>Et il y a eu les larmes. Au moins deux fois, quand j'ai eu assez de courage pour dire que quelque chose n'allait pas, elle a pleuré. Vraiment pleuré, le nez qui coule, la respiration qui saute, le mascara jusqu'au menton, ce bruit qu'on ne peut pas fabriquer quand l'air rentre de travers. Elle a juré qu'elle allait changer, elle a juré sur la vie de sa mère. Sur le moment, ces larmes m'ont paru la chose la plus sincère que j'aie jamais vue, et j'ai eu honte d'avoir douté. Aujourd'hui, je ne sais toujours pas quoi en penser. Je crois qu'elle pleurait sincèrement. Je crois aussi qu'elle savait, quelque part, ce que ça produisait. Les deux peuvent être vrais en même temps, et c'est précisément ce qui rend la chose difficile à raconter.</p>
+    <p>Je pourrais continuer la liste. Ce n'est pas la liste qui compte.</p>
+    <p>Ce qui compte, c'est que je les avais tous vus, ces signes, à l'heure exacte où ils se sont produits. Aucun ne m'a été caché. J'avais simplement, chaque fois, produit l'explication qui me permettait de rester. Avec assez d'amour — ou d'entêtement, je ne sais plus faire la différence — on trouve une explication à tout. C'est peut-être même à ça qu'on mesure la quantité d'amour qu'on met : au nombre d'explications qu'on est prêt à fabriquer.</p>
+  </section>
 
-    <h2><span class="chapter-number">VI.</span> Le Vertige du 29 mai</h2>
-    <p>Je croyais avoir touché le fond. Je me trompais.</p>
-    <p>Le 29 mai, sur le campus de l'U, je les ai revus ensemble. Y et Mehdi, vivant leur bonheur comme si de rien n'était. Comme si 410 jours n'avaient jamais existé. Comme si je n'avais été qu'un chapitre qu'on tourne sans même le finir.</p>
-    <p>J'avais parlé à Mehdi. Je lui avais tout dit : que j'étais le copain de Y, qu'elle m'avait menti, qu'elle me trompait. Et malgré cela, il était resté. Pire : il avait continué à la courtiser.</p>
-    <p>Parce qu'elles avaient réussi à retourner l'histoire. À faire de moi le méchant, le jaloux, l'hystérique. À vider les mots de leur sens jusqu'à ce que trahison ne signifie plus rien.</p>
-    <p>Et lui avait choisi de les croire. Il avait préféré ses chances à ma vérité, leurs rires à ma chute.</p>
-    <p>Ce qui me tuait le plus, ce n'était pas la rupture. Ce n'était même pas l'infidélité. C'était de constater à quel point j'avais été effacé, rayé, oublié. Comme si je n'avais jamais compté.</p>
-    <p>Je les ai revus au Colruyt d'Auder## . Elle rayonnait de bonheur. Et moi, j'étais détruit. Complètement. Je ne vivais plus, j'endurais.</p>
+  <section>
+    <div class="mark"><span class="num">VIII</span></div>
+    <p class="lead">Il y a quand même eu un moment où l'explication n'a pas tenu. Un seul.</p>
+    <p>C'était en février, dans la voiture. Son téléphone a sonné, elle a décroché, et sa voix a changé — plus haute, plus rapide, une autre fille que je ne connaissais pas. Elle a parlé trente secondes, elle a raccroché, et elle est revenue. Le même visage, la même main sur la mienne, la conversation reprise à l'endroit exact où on l'avait laissée. Sans transition. Sans que rien ne coince.</p>
+    <p>Ce n'est pas d'avoir été trompé qui m'a coûté le plus cher. C'est ces trente secondes où j'ai vu à quelle vitesse elle pouvait devenir quelqu'un d'autre et redevenir elle-même, et où j'ai décidé de ne pas y penser. Je n'ai pas trouvé d'explication, cette fois-là. J'ai fait plus simple : j'ai regardé la route.</p>
+    <p>Je pourrais m'arrêter ici et faire d'elle un monstre. Ce serait plus confortable, et plusieurs personnes me l'ont proposé. J'ai essayé, sérieusement, pendant des semaines. Le problème, c'est que je n'ai jamais réussi à faire tenir le mot plus de trois jours.</p>
+    <p>J'ai essayé <strong>manipulatrice</strong>. Puis je me suis souvenu de la semaine où j'ai eu quarante de fièvre : elle est venue tous les jours, elle a menti à sa mère pour venir, elle est restée assise par terre à côté du lit à me lire ses cours à voix haute parce que ça m'endormait. Elle a vidé une bassine dans laquelle j'avais vomi, sans faire de commentaire, sans se pincer le nez, et elle est revenue s'asseoir. Personne ne l'y obligeait. Personne ne regardait.</p>
+    <p>J'ai essayé <strong>elle ne t'a jamais aimé</strong>. Mais je l'ai vue pleurer en jurant qu'elle allait arrêter de fumer, et elle le jurait pour moi, et elle y croyait en le jurant. Une semaine plus tard elle fumait encore. Les deux choses sont vraies. Elle pensait chaque mot au moment où elle le disait, et le mot ne survivait pas à la semaine.</p>
+    <p>J'ai essayé <strong>hypocrite</strong>. Elle a rompu en m'expliquant qu'elle avait fait une prière de consultation et qu'un rêve lui avait montré ce qu'il fallait faire. Elle parlait déjà à Adam depuis quinze jours. Et pourtant je sais qu'elle a vraiment fait cette prière, la nuit, seule, et qu'elle a vraiment cru à la réponse. Elle avait juste posé la question de manière à obtenir celle qui l'arrangeait — ce qui, si on y réfléchit, est ce que fait à peu près tout le monde avec Dieu.</p>
+    <p>Voilà ce que je n'arrive pas à faire entrer dans une phrase : elle mordait ses manches en parlant de sa mère, elle revenait vers des gens qu'elle avait détruits en public trois semaines plus tôt, elle a vidé ma bassine, elle a menti tous les mois pendant un an, elle pleurait pour de vrai, elle promettait pour de vrai, elle m'a laissé crier tout seul sur un trottoir pendant quinze minutes en restant assise deux étages au-dessus, et rien de tout ça ne durait. Je n'ai pas de mot pour quelqu'un comme ça. C'est peut-être ça, la seule chose que j'ai apprise : les gens n'ont pas de mot.</p>
+    <p>Elle avait vingt ans, elle partait à la fin de l'été, elle n'aimait plus quelqu'un qu'elle n'osait pas quitter, et elle a fait la chose lâche plutôt que la chose difficile.</p>
+    <p>Seulement voilà. Quitter quelqu'un lâchement une fois, c'est de l'immaturité, et je pourrais le lui accorder. Ce que j'ai fini par voir, en reprenant les quatre cent dix jours, c'est que la façon dont elle m'a quitté était exactement la façon dont elle avait vécu toute la relation. Les mêmes gestes, simplement rendus visibles. Elle ne s'est pas mise à mentir en mai : elle a menti sur quelque chose que je pouvais enfin mesurer.</p>
+    <p>Ça ne la rend pas monstrueuse. Ça la rend cohérente, et c'est plus dur à admettre que le monstre : je n'ai pas été détruit par quelqu'un d'insaisissable. J'ai été détruit par quelqu'un de parfaitement lisible, que j'avais décidé de ne pas lire.</p>
+    <p class="beat">Elle ne m'a jamais menti sur ce qu'elle était. Elle me l'a montré tous les mois pendant un an. J'ai regardé ailleurs, et j'ai appelé ça de l'amour.</p>
+  </section>
 
-    <h2><span class="chapter-number">VII.</span> La Descente aux enfers</h2>
-    <p>Cette même question revenait, lancinante : quand est-ce que ça va s'arrêter ? Quand est-ce que je vais enfin mourir à l'intérieur pour que la douleur s'éteigne ?</p>
-    <p>Pas mourir physiquement. Mais que ce vacarme intérieur se taise enfin. Que je n'aie plus à porter ce souvenir comme un fardeau qui m'écrase à chaque battement de cœur.</p>
-    <p>La vérité, c'est que je ne vivais plus. Je survivais. Je tenais. Je serrais les dents, faisais semblant, avançais. Mais à l'intérieur, j'étais mort mille fois.</p>
-    <p>Et ce qui me tuait le plus, ce n'était pas même la trahison. C'était de constater à quel point j'avais été oublié si vite. Effacé. Comme si j'avais été un figurant dans ma propre histoire d'amour.</p>
+  <section class="coda">
+    <p>Je ne vais pas écrire que je vais bien. J'écris ceci en août et il y a encore des jours entiers qui ne servent à rien.</p>
+    <p>Mais il y a trois semaines, un soir, je me suis rendu compte en me couchant que je n'avais pas pensé à elle de la journée. Pas une fois. J'ai vérifié, comme on tâte une dent qui ne fait plus mal. Rien.</p>
+    <p>J'ai repassé l'examen en juin. J'ai eu quatorze. C'est un chiffre ridicule à mettre dans un texte comme celui-ci, et c'est pourtant la seule preuve que j'ai.</p>
+    <p>Ce n'est pas la capacité des gens à mentir qui me fait peur, maintenant. C'est la mienne à trouver, chaque fois, une raison de rester. Celle-là, je ne l'ai pas perdue en même temps qu'elle. Elle est encore là, intacte, disponible pour la prochaine personne.</p>
+    <p class="beat">J'ai aimé quelqu'un qui n'était pas là. Il me reste à apprendre à aimer quelqu'un qui y est — et à y être moi-même, ce qui, je commence à le soupçonner, était déjà la moitié du problème.</p>
+    <p class="end">Fin</p>
+  </section>
 
-    <h2><span class="chapter-number">VIII.</span> La Révélation</h2>
-    <p>Puis, dans cette souffrance, une vérité s'est imposée à moi avec la force de l'évidence : je n'avais jamais aimé Y.</p>
-    <p>J'avais aimé l'idée que je m'étais faite d'elle. J'avais aimé la version qu'elle avait bien voulu me montrer. Cette Y douce et affectionnée qui m'avait donné une quantité d'amour que je n'avais jamais reçue et que je n'avais jamais espéré recevoir.</p>
-    <p>Mais la véritable Y, c'était autre chose. C'était celle qui trompe ses ex et qui en rit. Celle qui flirte à tout-va, passant d'Ayoub à Elias, d'Emre à Youssef, d'Amadeo à tant d'autres. Celle qui ne sait pas aimer une seule personne à la fois.</p>
-    <p>C'était celle qui ment compulsivement, prête à tout pour manipuler. Celle qui a un cœur noir et ne pense qu'à son bien. Une traître manipulatrice et arrogante. Celle qui fume des paquets entiers en te promettant d'arrêter. Celle qui s'enferme dans une chambre avec trois hommes pour manger des space cakes.</p>
-    <p>Celle qui te dit "je t'aime" droit dans les yeux en pensant à un autre. Celle qui monte dans ta voiture, fait des "choses", puis retourne regarder un match avec celui qu'elle désire vraiment. Celle qui te fait croire que tu es l'homme de sa vie, qui jure sur la vie de sa mère en pleurant qu'elle va changer, mais qui continue de te mentir chaque jour.</p>
-    <p>J'avais aimé un masque. Et aujourd'hui, ce masque n'existait plus.</p>
+</main>
 
-    <div class="page-break"></div>
-
-    <h2><span class="chapter-number">IX.</span> L'Épiphanie</h2>
-    <p>Au final, peut-être que ce compte gossip qui m'avait tout révélé n'était ni plus ni moins qu'un signe divin. Cette fille était incapable d'authenticité. Elle était profondément malhonnête.</p>
-    <p>Cette capacité qu'elle avait de compartimenter, d'utiliser les gens, était véritablement terrifiante. Elle pouvait passer d'un homme à l'autre sans la moindre transition émotionnelle, sans la moindre culpabilité.</p>
-    <p>Quand je vois Y aujourd'hui, je me demande comment j'ai pu aimer cette chose. Certains me diront que je crache dans l'eau que j'ai bue. Je répondrai à ces gens que cette eau m'a rendu malade.</p>
-    <p>Mais ce n'est pas une fin. Je ne suis pas mort. Cette eau empoisonnée me rendra plus fort, car j'en ressors avec un meilleur système immunitaire. J'ai appris à reconnaître le goût du poison, et jamais plus je ne le confondrai avec celui de l'amour véritable.</p>
-
-    <div class="epilogue">
-        <h2>Épilogue : Renaissance</h2>
-        <p>Je ne dirai pas que je vais bien. Je ne prétendrai pas que tout est derrière moi. Mais je suis encore debout. Et ça, c'est déjà une victoire.</p>
-        <p>J'ai traversé l'humiliation, la trahison, le déni, la colère, la détresse. J'ai hurlé dans le silence, supplié dans le vide, cru mourir à l'intérieur mille fois. Mais aujourd'hui, je suis lucide. Et plus fort.</p>
-        <p>J'ai compris que parfois, ce qu'on pense être une bénédiction est en réalité un test. Et ce qu'on prend pour un effondrement est en vérité une renaissance.</p>
-        <p>Je ne suis plus l'homme que j'étais. Mais je suis en train de devenir celui que je dois être. Un homme qui ne donne plus tout à ceux qui ne donnent rien. Un homme qui connaît sa valeur, même quand on essaie de l'effacer. Un homme qui aime, oui - mais jamais au prix de lui-même.</p>
-        <p>Je ne sais pas ce que la vie me réserve. Mais ce que je sais, c'est que je ne courrai plus derrière des gens qui me laissent tomber. Je ne pleurerai plus pour des cœurs qui ne battent pas pour moi.</p>
-        <p>Quand je rencontrerai quelqu'un de vraiment honnête, de vraiment capable d'amour sincère, je le reconnaîtrai immédiatement. Parce que je connais maintenant la différence entre un masque et un vrai visage. Entre l'amour et son imposture.</p>
-        <p>Cette douleur que j'ai portée, ces tessons de bouteille dans le ventre, ce mort que je portais en moi - tout cela s'estompe peu à peu. Non pas parce que j'oublie, mais parce que je comprends.</p>
-        <p>Je me relève. Je me reconstruis. J'avance.</p>
-        <p>Pas pour lui prouver quelque chose. Mais pour m'honorer, moi.</p>
-        <p>Car au final, la plus belle vengeance contre ceux qui nous trahissent, c'est de devenir la meilleure version de nous-mêmes. C'est de transformer leur poison en antidote, leur mensonge en vérité sur nous-mêmes.</p>
-        <p>J'ai aimé un fantôme. Mais maintenant, j'aime un homme bien réel : moi.</p>
-    </div>
-
-    <div class="footer">
-        <p><strong>Fin</strong></p>
-        <p>« De nos blessures naissent nos plus grandes forces. »</p>
-    </div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  function tick(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(h.scrollTop||document.body.scrollTop)/max*100:0)+'%';
+  }
+  addEventListener('scroll',tick,{passive:true});
+  addEventListener('resize',tick);
+  tick();
+})();
+</script>
 </body>
 </html>
